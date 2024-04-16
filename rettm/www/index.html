@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>JSON Example</title>
+</head>
+<body>
+    <h1>JSON Data Fetch Example</h1>
+    <div id="output">Loading...</div>
+
+    <script>
+        // 定义加载JSON数据的函数
+        function loadData() {
+            fetch('data.json')
+                .then(response => response.json())
+                .then(data => {
+                    // 数据加载后获取第二项的第二个参数（age）
+                    const secondItemSecondParam = data[1].age;
+                    // 显示在页面上
+                    document.getElementById('output').innerText = '第二项的年龄是: ' + secondItemSecondParam;
+                })
+                .catch(error => {
+                    console.error('Error fetching data: ', error);
+                    document.getElementById('output').innerText = 'Error loading data.';
+                });
+        }
+
+        // 加载数据
+        window.onload = loadData;
+    </script>
+</body>
+</html>
